@@ -1,0 +1,20 @@
+<h1>まとめサイトのまとめもどき</h1>
+
+サイトURLの登録は
+<%= link_to 'こちら', rss_urls_path %>
+
+<hr>
+<% @rss_Urls.each do |rss_url| %>
+<table>
+  <tr>
+    <td><%= rss_url.Site_Name %></td>
+  </tr>
+  <% @rss_contents.each do |c| %>
+  <tr>
+    <td><%= link_to c.title, c.link %></td>
+  </tr>
+  <% end %>
+</table>
+<hr>
+<% end %>
+

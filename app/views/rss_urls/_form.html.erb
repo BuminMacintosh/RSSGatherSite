@@ -1,0 +1,30 @@
+<%= form_for(@rss_url) do |f| %>
+  <% if @rss_url.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rss_url.errors.count, "error") %> prohibited this rss_url from being saved:</h2>
+
+      <ul>
+      <% @rss_url.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Rss_Url_id_seq %><br />
+    <%= f.text_field :Rss_Url_id_seq %>
+  </div>
+  <div class="field">
+    <%= f.label :Site_Name %><br />
+    <%= f.text_field :Site_Name %>
+  </div>
+  <div class="field">
+    <%= f.label :Site_Url %><br />
+    <%= f.text_field :Site_Url %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

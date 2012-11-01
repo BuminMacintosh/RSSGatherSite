@@ -1,0 +1,27 @@
+<h1>登録済みRSS一覧</h1>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>名前</th>
+    <th>URL</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rss_urls.each do |rss_url| %>
+  <tr>
+    <td><%= rss_url.Rss_Url_id_seq %></td>
+    <td><%= rss_url.Site_Name %></td>
+    <td><%= rss_url.Site_Url %></td>
+    <td><%= link_to '編集', edit_rss_url_path(rss_url) %></td>
+    <td><%= link_to '削除', rss_url, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '新規登録', new_rss_url_path %> |
+<%= link_to '戻る', root_url %>
