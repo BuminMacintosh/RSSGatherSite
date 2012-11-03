@@ -14,9 +14,7 @@ class SiteController < ApplicationController
       parentHeader.subContent = Array.new()
       # (子)コンテンツ部分
       rss.items.each_index do |idx|
-        if idx >= rssUrl.Getting_Count
-          break
-        end
+        if idx >= rssUrl.Getting_Count; break; end
         childContent = Content.new
         childContent.title = rss.items[idx].title
         childContent.link = rss.items[idx].link
