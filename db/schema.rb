@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028124339) do
+ActiveRecord::Schema.define(:version => 20121103151003) do
 
   create_table "rss_urls", :force => true do |t|
     t.integer  "Rss_Url_id_seq"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121028124339) do
     t.datetime "updated_at",     :null => false
     t.string   "Site_Name"
     t.string   "Site_Url"
+    t.integer  "Getting_Count"
   end
 
 end

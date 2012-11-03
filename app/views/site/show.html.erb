@@ -1,17 +1,17 @@
-<h1>まとめサイトのまとめもどき</h1>
+<h1>RSS Gather Site</h1>
 
 サイトURLの登録は
 <%= link_to 'こちら', rss_urls_path %>
 
 <hr>
-<% @rss_Urls.each do |rss_url| %>
+<% @rss_contents.each do |parent| %>
 <table>
   <tr>
-    <td><%= rss_url.Site_Name %></td>
+    <td><%= parent.name %></td>
   </tr>
-  <% @rss_contents.each do |c| %>
+  <% parent.subContent.each do |child| %>
   <tr>
-    <td><%= link_to c.title, c.link %></td>
+    <td><%= link_to child.title, child.link %></td>
   </tr>
   <% end %>
 </table>

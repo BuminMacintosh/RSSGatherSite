@@ -5,16 +5,24 @@ class SiteController < ApplicationController
   def show
     @rss_contents = Array.new()
 
-    @rss_Urls = RssUrl.all
-
-    # RSSURLƒ}ƒXƒ^‚©‚çRSS‚ðŽæ“¾‚·‚é
-    @rss_Urls.each do |rssUrl|
+    # RSSURLãƒžã‚¹ã‚¿ã‹ã‚‰RSSã‚’å–å¾—ã™ã‚‹
+    RssUrl.sortedAll.each do |rssUrl|
       rss = open(rssUrl.Site_Url) { |file| RSS::Parser.parse(file.read) }
-      rss.items.each do |item|
-        content = Content.new
-        content.init(rssUrl.Site_Name, item.title, item.link)
-        @rss_contents.push(content)
+      # (è¦ª)ãƒ˜ãƒƒãƒ€éƒ¨
+      parentHeader = Content.new
+      parentHeader.name = rssUrl.Site_Name
+      parentHeader.subContent = Array.new()
+      # (å­)ã‚³ãƒ³ãƒ†ãƒ³ãƒ„éƒ¨åˆ†
+      rss.items.each_index do |idx|
+        if idx >= rssUrl.Getting_Count
+          break
+        end
+        childContent = Content.new
+        childContent.title = rss.items[idx].title
+        childContent.link = rss.items[idx].link
+        parentHeader.subContent.push(childContent)
       end
+      @rss_contents.push(parentHeader)
     end
 
     respond_to do |format|

@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Rss_Url_id_seq %><br />
+    <%= f.label '並び順' %><br />
     <%= f.text_field :Rss_Url_id_seq %>
   </div>
   <div class="field">
-    <%= f.label :Site_Name %><br />
+    <%= f.label '名前' %><br />
     <%= f.text_field :Site_Name %>
   </div>
   <div class="field">
-    <%= f.label :Site_Url %><br />
+    <%= f.label 'RSS URL' %><br />
     <%= f.text_field :Site_Url %>
+  </div>
+  <div class="field">
+    <%= f.label 'コンテンツ取得件数' %><br />
+    <%= f.text_field :Getting_Count %>
   </div>
 
   <div class="actions">

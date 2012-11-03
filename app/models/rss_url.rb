@@ -1,4 +1,7 @@
 class RssUrl < ActiveRecord::Base
-  self.primary_key = 'Rss_Url_id_seq'
-  attr_accessible :Rss_Url_id_seq, :Site_Name, :Site_Url
+  attr_accessible :Rss_Url_id_seq, :Site_Name, :Site_Url, :Getting_Count
+
+  def RssUrl.sortedAll
+    RssUrl.all.sort_by {|item| item.Rss_Url_id_seq}
+  end
 end

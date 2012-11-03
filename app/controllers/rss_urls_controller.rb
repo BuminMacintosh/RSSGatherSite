@@ -2,22 +2,11 @@ class RssUrlsController < ApplicationController
   # GET /rss_urls
   # GET /rss_urls.json
   def index
-    @rss_urls = RssUrl.all
+    @rss_urls = RssUrl.sortedAll
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @rss_urls }
-    end
-  end
-
-  # GET /rss_urls/1
-  # GET /rss_urls/1.json
-  def show
-    @rss_url = RssUrl.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @rss_url }
     end
   end
 
@@ -44,8 +33,7 @@ class RssUrlsController < ApplicationController
 
     respond_to do |format|
       if @rss_url.save
-        format.html { redirect_to @rss_url, notice: 'Rss url was successfully created.' }
-        format.json { render json: @rss_url, status: :created, location: @rss_url }
+        format.html { redirect_to rss_urls_path }
       else
         format.html { render action: "new" }
         format.json { render json: @rss_url.errors, status: :unprocessable_entity }
@@ -60,8 +48,7 @@ class RssUrlsController < ApplicationController
 
     respond_to do |format|
       if @rss_url.update_attributes(params[:rss_url])
-        format.html { redirect_to @rss_url, notice: 'Rss url was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to rss_urls_path }
       else
         format.html { render action: "edit" }
         format.json { render json: @rss_url.errors, status: :unprocessable_entity }
