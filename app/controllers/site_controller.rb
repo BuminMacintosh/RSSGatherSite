@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'rss'
+require 'feed-normalizer'
 
 class SiteController < ApplicationController
   def show
@@ -7,20 +7,23 @@ class SiteController < ApplicationController
 
     # RSSURLマスタからRSSを取得する
     RssUrl.sortedAll.each do |rssUrl|
-      rss = open(rssUrl.Site_Url) { |file| RSS::Parser.parse(file.read) }
-      # (親)ヘッダ部
-      parentHeader = Content.new
-      parentHeader.name = rssUrl.Site_Name
-      parentHeader.subContent = Array.new()
-      # (子)コンテンツ部分
-      rss.items.each_index do |idx|
-        if idx >= rssUrl.Getting_Count; break; end
-        childContent = Content.new
-        childContent.title = rss.items[idx].title
-        childContent.link = rss.items[idx].link
-        parentHeader.subContent.push(childContent)
-      end
-      @rss_contents.push(parentHeader)
+        feed = open(rssUrl.Site_Url) { |file| FeedNormalizer::FeedNormalizer.parse(file) }
+
+        # (親)ヘッダ部
+        parentHeader = Content.new
+        parentHeader.name = rssUrl.Site_Name
+        parentHeader.subContent = Array.new()
+
+        # (子)コンテンツ部分
+        feed.entries.each_index do |idx|
+          if idx >= rssUrl.Getting_Count; break; end
+          childContent = Content.new
+          childContent.title = feed.entries[idx].title.force_encoding('utf-8')
+          childContent.link = feed.entries[idx].url
+          parentHeader.subContent.push(childContent)
+        end
+
+        @rss_contents.push(parentHeader)
     end
 
     respond_to do |format|
