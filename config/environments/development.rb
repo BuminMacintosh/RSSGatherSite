@@ -1,5 +1,8 @@
-RSSGatherSite::Application.configure do
+﻿RSSGatherSite::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+  config.i18n.default_locale = :ja
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
