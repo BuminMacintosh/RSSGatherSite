@@ -1,8 +1,14 @@
 ﻿RSSGatherSite::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+  I18n.locale = :ja
+  I18n.default_locale = :ja
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
-  config.i18n.default_locale = :en
+  config.i18n.locale = :ja
+
+  # bypasses rails bug with i18n in production\
+  I18n.reload!
+  config.i18n.reload!
 
   # Code is not reloaded between requests
   config.cache_classes = true
