@@ -1,3 +1,3 @@
 class Content
-  attr_accessor :name, :title, :link, :subContent
+  attr_accessor :title, :link, :description, :date, :subContent
 end

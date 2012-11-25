@@ -1,3 +1,73 @@
-// Place all the styles related to the RssURLs controller here.
+﻿// Place all the styles related to the RssURLs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul {
+  PADDING: 0px 0px 0px 20px
+}
+
+input {
+  MARGIN: 0px 0px 2px 0px;
+  FONT-SIZE: 1px;
+  PADDING: 6px 5px;
+}
+
+input.button {
+  WIDTH: 100px;
+  PADDING: 3px;
+}
+
+input.numeric {
+  WIDTH: 20px;
+  TEXT-ALIGN: right;
+  BORDER: 1px solid #CCC;
+  BOX-SHADOW: inset 0 1px 3px #E4E4E4;
+}
+
+input.string {
+  WIDTH: 93%;
+  BORDER: 1px solid #CCC;
+  BOX-SHADOW: inset 0 1px 3px #E4E4E4;
+}
+
+div.label_field {
+  MARGIN: 0px 0px 0px 10px;
+  FONT-SIZE: 11px;
+  WIDTH: 50px;
+  VERTICAL-ALIGN: top;
+  DISPLAY: inline-block;
+}
+
+div.input_field {
+  WIDTH: 400px;
+  DISPLAY: inline-block;
+}
+
+table.list {
+  PADDING: 0px 10px 0px 0px;
+  BORDER-TOP: 1px solid #663300;
+  BORDER-LEFT: 1px solid #663300;
+  BORDER-COLLAPSE: collapse;
+  BORDER-SPACING: 0px;
+  BACKGROUND-COLOR: white;
+  WHITE-SPACE: normal;
+}
+
+table.list th {
+  FONT-SIZE: 1px;
+  BORDER-RIGHT: 1px solid #663300;
+  BORDER-BOTTOM: 1px solid #663300;
+  COLOR: black;
+  BACKGROUND-COLOR: lightPink;
+  PADDING: 5px;
+  TEXT-ALIGN: center;
+  BOX-SHADOW: inset 1px 1px 3px white;
+}
+
+table.list td {
+  FONT-SIZE: 1px;
+  BORDER-RIGHT: 1px solid #663300;
+  BORDER-BOTTOM: 1px solid #663300;
+  PADDING: 5px;
+  TEXT-ALIGN: left;
+  BOX-SHADOW: inset 2px 2px 3px #E4E4E4;
+}

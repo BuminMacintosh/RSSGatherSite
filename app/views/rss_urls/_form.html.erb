@@ -1,8 +1,8 @@
-<%= form_for(@rss_url) do |f| %>
+﻿<%= form_for(@rss_url) do |f| %>
   <% if @rss_url.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@rss_url.errors.count, "error") %> prohibited this rss_url from being saved:</h2>
-
+      <h2><%= t(:header, :model => t(:rss_url, :scope => [:activerecord, :models]), :count => @rss_url.errors.count, :scope => [:activerecord, :errors, :template]) %></h2>
+      <p><%= t(:body, :scope => [:activerecord, :errors, :template]) %></p>
       <ul>
       <% @rss_url.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,24 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label '並び順' %><br />
-    <%= f.text_field :Rss_Url_id_seq %>
+  <div class="label_field">
+    <%= f.label t('activerecord.attributes.rss_url.Rss_Url_id_seq') %>
   </div>
-  <div class="field">
-    <%= f.label '名前' %><br />
-    <%= f.text_field :Site_Name %>
+  <div class="input_field">
+    <%= f.text_field :Rss_Url_id_seq, :class => 'numeric' %>
   </div>
-  <div class="field">
-    <%= f.label 'RSS URL' %><br />
-    <%= f.text_field :Site_Url %>
+  </br>
+
+  <div class="label_field">
+    <%= f.label t('activerecord.attributes.rss_url.Site_Name') %>
   </div>
-  <div class="field">
-    <%= f.label 'コンテンツ取得件数' %><br />
-    <%= f.text_field :Getting_Count %>
+  <div class="input_field">
+    <%= f.text_field :Site_Name, :class => 'string' %>
   </div>
+  </br>
+
+  <div class="label_field">
+    <%= f.label t('activerecord.attributes.rss_url.Site_Url') %>
+  </div>
+  <div class="input_field">
+    <%= f.text_field :Site_Url, :class => 'string' %>
+  </div>
+  </br>
+
+  <div class="label_field">
+    <%= f.label t('activerecord.attributes.rss_url.Getting_Count') %>
+  </div>
+  <div class="input_field">
+    <%= f.text_field :Getting_Count, :class => 'numeric' %>
+  </div>
+  </br>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t('label.rss_url.update'), :class => 'button' %>
   </div>
 <% end %>

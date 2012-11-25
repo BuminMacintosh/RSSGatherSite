@@ -1,4 +1,4 @@
-body {
+﻿body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -18,7 +18,7 @@ pre {
   font-size: 11px;
 }
 
-a {
+#a {
   color: #000;
   &:visited {
     color: #666;
@@ -31,7 +31,7 @@ a {
 
 div {
   &.field, &.actions {
-    margin-bottom: 10px;
+    margin-bottom: 1px;
   }
 }
 

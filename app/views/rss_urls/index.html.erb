@@ -1,12 +1,23 @@
-<h1>登録済みRSS一覧</h1>
+﻿<h1><%= t('label.rss_url.listing_rss_url') %></h1>
 
-<table>
+<div class="actions">
+  <%= button_to t('label.rss_url.new'), new_rss_url_path, :method => :get, :class => 'button' %>
+</div>
+
+<table class='list' >
   <tr>
-    <th>並び順</th>
-    <th>名前</th>
-    <th>RSS URL</th>
-    <th>コンテンツ取得件数</th>
-    <th></th>
+    <th>
+      <%= t('activerecord.attributes.rss_url.Rss_Url_id_seq') %>
+    </th>
+    <th>
+      <%= t('activerecord.attributes.rss_url.Site_Name') %>
+    </th>
+    <th>
+      <%= t('activerecord.attributes.rss_url.Site_Url') %>
+    </th>
+    <th>
+      <%= t('activerecord.attributes.rss_url.Getting_Count') %>
+    </th>
     <th></th>
   </tr>
 
@@ -16,13 +27,12 @@
     <td><%= rss_url.Site_Name %></td>
     <td><%= rss_url.Site_Url %></td>
     <td><%= rss_url.Getting_Count %></td>
-    <td><%= link_to '編集', edit_rss_url_path(rss_url) %></td>
-    <td><%= link_to '削除', rss_url, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+    <td>
+      <%= link_to t('label.rss_url.edit'), edit_rss_url_path(rss_url) %> |
+      <%= link_to t('label.rss_url.destroy'), rss_url, method: :delete, data: { confirm: t('label.rss_url.confirm') } %>
+    </td>
   </tr>
 <% end %>
 </table>
-
 <br />
-
-<%= link_to '新規登録', new_rss_url_path %> |
-<%= link_to '戻る', root_url %>
+<%= link_to t('label.rss_url.back'), root_url %>

@@ -1,17 +1,18 @@
-require 'open-uri'
+﻿require 'open-uri'
 require 'feed-normalizer'
 
-class SiteController < ApplicationController
+class ContentsController < ApplicationController
   def show
-    @rss_contents = Array.new()
+    @contents = Array.new()
 
     # RSSURLマスタからRSSを取得する
     RssUrl.sortedAll.each do |rssUrl|
-        feed = open(rssUrl.Site_Url) { |file| FeedNormalizer::FeedNormalizer.parse(file) }
+        feed = open(rssUrl.Site_Url) { |xml| FeedNormalizer::FeedNormalizer.parse(xml) }
 
         # (親)ヘッダ部
         parentHeader = Content.new
-        parentHeader.name = rssUrl.Site_Name
+        parentHeader.title = feed.title.force_encoding('utf-8')
+        parentHeader.link = feed.url
         parentHeader.subContent = Array.new()
 
         # (子)コンテンツ部分
@@ -20,15 +21,11 @@ class SiteController < ApplicationController
           childContent = Content.new
           childContent.title = feed.entries[idx].title.force_encoding('utf-8')
           childContent.link = feed.entries[idx].url
+          childContent.date = feed.entries[idx].last_updated
           parentHeader.subContent.push(childContent)
         end
 
-        @rss_contents.push(parentHeader)
-    end
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @rss_contents }
+        @contents.push(parentHeader)
     end
   end
 end

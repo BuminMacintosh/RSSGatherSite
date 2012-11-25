@@ -1,5 +1,5 @@
 RSSGatherSite::Application.routes.draw do
-  root :to => 'Site#show'
+  root :to => 'Contents#show'
   resources :rss_urls
 
   # The priority is based upon order of creation:

@@ -1,0 +1,27 @@
+﻿<h1><%= t('Application_Name') %></h1>
+
+<div class='actions'>
+  <%= t('Regist_Label') %>
+  <%= link_to t('Regist_Link'), rss_urls_path %>
+</div>
+
+<hr>
+<table>
+  <% @contents.each do |parent| %>
+  <tr>
+    <td>
+      <h3><%= link_to parent.title, parent.link, :class => 'black' %></h3>
+      <ul>
+        <% parent.subContent.each do |child| %>
+        <li>
+          <div class='small_font'><%= simple_time(child.date) %></div>
+          <%= link_to child.title, child.link %>
+        </li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<hr>
+

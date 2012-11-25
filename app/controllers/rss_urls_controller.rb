@@ -1,4 +1,4 @@
-class RssUrlsController < ApplicationController
+﻿class RssUrlsController < ApplicationController
   # GET /rss_urls
   # GET /rss_urls.json
   def index
