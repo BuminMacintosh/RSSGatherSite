@@ -7,13 +7,7 @@ class ContentsController < ApplicationController
 
     # RSSURLマスタからRSSを取得する
     RssUrl.sortedAll.each do |rssUrl|
-        feed = open(rssUrl.Site_Url) do |xml|
-          FeedNormalizer::FeedNormalizer.parse(
-            xml,
-            :force_parser => FeedNormalizer::SimpleRssParser,
-            :try_others => true
-          )
-        end
+        feed = open(rssUrl.Site_Url) { |xml| FeedNormalizer::FeedNormalizer.parse(xml) }
 
         # (親)ヘッダ部
         parentHeader = Content.new
