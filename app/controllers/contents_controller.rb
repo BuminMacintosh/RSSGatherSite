@@ -11,7 +11,7 @@ class ContentsController < ApplicationController
 
         # (親)ヘッダ部
         parentHeader = Content.new
-        parentHeader.title = feed.title.force_encoding('utf-8')
+        parentHeader.title = feed.title
         parentHeader.link = feed.url
         parentHeader.subContent = Array.new()
 
