@@ -1,4 +1,4 @@
-﻿require 'open-uri'
+require 'open-uri'
 require 'feed-normalizer'
 
 class ContentsController < ApplicationController

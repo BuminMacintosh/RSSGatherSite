@@ -1,4 +1,4 @@
-﻿class RssUrl < ActiveRecord::Base
+class RssUrl < ActiveRecord::Base
   attr_accessible :Rss_Url_id_seq, :Site_Name, :Site_Url, :Getting_Count
   
   validates_presence_of :Rss_Url_id_seq, :Site_Name, :Site_Url, :Getting_Count

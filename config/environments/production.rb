@@ -1,4 +1,4 @@
-﻿RSSGatherSite::Application.configure do
+RSSGatherSite::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
   # I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
   # I18n.locale = :ja

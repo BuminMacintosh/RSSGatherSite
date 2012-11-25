@@ -1,4 +1,4 @@
-﻿<%= form_for(@rss_url) do |f| %>
+<%= form_for(@rss_url) do |f| %>
   <% if @rss_url.errors.any? %>
     <div id="error_explanation">
       <h2><%= t(:header, :model => t(:rss_url, :scope => [:activerecord, :models]), :count => @rss_url.errors.count, :scope => [:activerecord, :errors, :template]) %></h2>
