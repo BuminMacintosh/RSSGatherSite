@@ -2,12 +2,9 @@ class ContentsController < ApplicationController
   include ApplicationHelper
   include ContentsHelper
 
-  def add_Content(content)
-    if nil == @contents; @contents = Array.new(); end
-    @contents.push(content)
-  end
-
   def show
+    @contents = Array.new();
+
     RssUrl.sortedAll.each do |rssUrl|
         feed = simple_Rssfeed(rssUrl.Site_Url)
         next if feed.blank?
@@ -16,7 +13,7 @@ class ContentsController < ApplicationController
         entries = feed.entries.slice(0..rssUrl.Getting_Count)
         entries.each { |entry| header.subContents.push(simple_Entry(entry)) }
 
-        add_Content(header)
+        @contents.push(content)
     end
 
     respond_to do |format|
