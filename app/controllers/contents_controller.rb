@@ -13,7 +13,7 @@ class ContentsController < ApplicationController
         entries = feed.entries.slice(0..rssUrl.Getting_Count)
         entries.each { |entry| header.subContents.push(simple_Entry(entry)) }
 
-        @contents.push(content)
+        @contents.push(header)
     end
 
     respond_to do |format|
