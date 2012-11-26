@@ -6,6 +6,7 @@ class ContentsController < ApplicationController
     @contents = Array.new();
 
     RssUrl.sortedAll.each do |rssUrl|
+      begin
         feed = simple_Rssfeed(rssUrl.Site_Url)
         next if feed.blank?
 
@@ -14,6 +15,9 @@ class ContentsController < ApplicationController
         entries.each { |entry| header.subContents.push(simple_Entry(entry)) }
 
         @contents.push(header)
+      rescue => exception
+        p exception
+      end
     end
 
     respond_to do |format|
