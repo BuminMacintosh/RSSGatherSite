@@ -7,10 +7,10 @@ module ContentsHelper
     end
   end
 
-  def simple_Header(feed)
+  def simple_Header(feed, rssUrl)
     header = Content.new
-    header.title = (feed.title || "-").force_encoding('utf-8')
-    header.link = feed.url
+    header.title = (feed.title || rssUrl.Site_Name).force_encoding('utf-8')
+    header.link = feed.url || rssUrl.Site_Url
     header.subContents = Array.new()
 
     return header
@@ -19,7 +19,7 @@ module ContentsHelper
   def simple_Entry(feedEntry)
     entry = Content.new
     entry.title = (feedEntry.title || "-").force_encoding('utf-8')
-    entry.link = feedEntry.url
+    entry.link = feedEntry.url || "about:blank"
     entry.date = feedEntry.last_updated || feedEntry.date_published
 
     return entry
