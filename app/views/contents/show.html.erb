@@ -7,15 +7,15 @@
 
 <hr>
 <table>
-  <% @contents.each do |parent| %>
+  <% @contents.each do |header| %>
   <tr>
     <td>
-      <h3><%= link_to parent.title, parent.link, :class => 'black' %></h3>
+      <h3><%= link_to header.title, header.link, :class => 'black' %></h3>
       <ul>
-        <% parent.subContent.each do |child| %>
+        <% header.subContents.each do |entry| %>
         <li>
-          <div class='small_font'><%= simple_time(child.date) %></div>
-          <%= link_to child.title, child.link %>
+          <div class='small_font'><%= simple_time(entry.date) %></div>
+          <%= link_to entry.title, entry.link %>
         </li>
         <% end %>
       </ul>

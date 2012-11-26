@@ -1,31 +1,27 @@
-require 'open-uri'
-require 'feed-normalizer'
-
 class ContentsController < ApplicationController
+  include ApplicationHelper
+  include ContentsHelper
+
+  def add_Content(content)
+    if nil == @contents; @contents = Array.new(); end
+    @contents.push(content)
+  end
+
   def show
-    @contents = Array.new()
-
-    # RSSURLマスタからRSSを取得する
     RssUrl.sortedAll.each do |rssUrl|
-        feed = open(rssUrl.Site_Url) { |xml| FeedNormalizer::FeedNormalizer.parse(xml) }
+        feed = simple_Rssfeed(rssUrl.Site_Url)
+        next if feed.blank?
 
-        # (親)ヘッダ部
-        parentHeader = Content.new
-        parentHeader.title = feed.title.force_encoding('utf-8')
-        parentHeader.link = feed.url
-        parentHeader.subContent = Array.new()
+        header = simple_Header(feed)
+        entries = feed.entries.slice(0..rssUrl.Getting_Count)
+        entries.each { |entry| header.subContents.push(simple_Entry(entry)) }
 
-        # (子)コンテンツ部分
-        feed.entries.each_index do |idx|
-          if idx >= rssUrl.Getting_Count; break; end
-          childContent = Content.new
-          childContent.title = feed.entries[idx].title.force_encoding('utf-8')
-          childContent.link = feed.entries[idx].url
-          childContent.date = feed.entries[idx].last_updated || feed.entries[idx].date_published
-          parentHeader.subContent.push(childContent)
-        end
+        add_Content(header)
+    end
 
-        @contents.push(parentHeader)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @contents }
     end
   end
 end
