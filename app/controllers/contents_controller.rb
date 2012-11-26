@@ -10,7 +10,7 @@ class ContentsController < ApplicationController
         next if feed.blank?
 
         header = simple_Header(feed)
-        entries = feed.entries.slice(0..rssUrl.Getting_Count)
+        entries = feed.entries.slice(0..(rssUrl.Getting_Count - 1))
         entries.each { |entry| header.subContents.push(simple_Entry(entry)) }
 
         @contents.push(header)
