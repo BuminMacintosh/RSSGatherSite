@@ -1,8 +1,10 @@
 class RssUrlsController < ApplicationController
+
   # GET /rss_urls
   # GET /rss_urls.json
   def index
-    @rss_urls = RssUrl.sortedAll
+    # get all rss_url record with feed content
+    @rss_urls = RssUrl.all.each { |item| item.init_feed }
 
     respond_to do |format|
       format.html # index.html.erb

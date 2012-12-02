@@ -1,38 +1,31 @@
-<h1><%= t('label.rss_url.listing_rss_url') %></h1>
-
-<div class="actions">
-  <%= button_to t('label.rss_url.new'), new_rss_url_path, :method => :get, :class => 'button' %>
+<div class='header'>
+  <h1><%= t('Application_Name') %></h1>
 </div>
 
-<table class='list' >
-  <tr>
-    <th>
-      <%= t('activerecord.attributes.rss_url.Rss_Url_id_seq') %>
-    </th>
-    <th>
-      <%= t('activerecord.attributes.rss_url.Site_Name') %>
-    </th>
-    <th>
-      <%= t('activerecord.attributes.rss_url.Site_Url') %>
-    </th>
-    <th>
-      <%= t('activerecord.attributes.rss_url.Getting_Count') %>
-    </th>
-    <th></th>
-  </tr>
+<div class='actions'>
+  <%= t('Regist_Label') %>
+  <%= link_to t('Regist_Link'), new_rss_url_path %>
+</div>
 
-<% @rss_urls.each do |rss_url| %>
+<table>
+  <% @rss_urls.sort_by { |item| item.sort_number }.each do |rss_url| %>
   <tr>
-    <td><%= rss_url.Rss_Url_id_seq %></td>
-    <td><%= rss_url.Site_Name %></td>
-    <td><%= rss_url.Site_Url %></td>
-    <td><%= rss_url.Getting_Count %></td>
-    <td>
-      <%= link_to t('label.rss_url.edit'), edit_rss_url_path(rss_url) %> |
-      <%= link_to t('label.rss_url.destroy'), rss_url, method: :delete, data: { confirm: t('label.rss_url.confirm') } %>
+   <td>
+      <h3>
+        <%= link_to encoding_utf8(rss_url.feed.title || rss_url.name), edit_rss_url_path(rss_url), :class => 'black' %>
+      </h3>
+      <ul>
+        <% rss_url.feed.entries.first(rss_url.limit_count).each do |entry| %>
+        <li>
+          <div class='small_font'><%= simple_time(entry.last_updated || entry.date_published) %></div>
+          <div ><%= link_to encoding_utf8(entry.title || '-'), entry.url %></div>
+        </li>
+        <% end %>
+        <div class='actions'>
+          <%= link_to t('label.rss_url.destroy'), rss_url, method: :delete, data: { confirm: t('label.rss_url.confirm') } %>
+        </div>
+      </ul>
     </td>
   </tr>
-<% end %>
+  <% end %>
 </table>
-<br />
-<%= link_to t('label.rss_url.back'), root_url %>

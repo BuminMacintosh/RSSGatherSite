@@ -9,10 +9,10 @@ ja:
 
     attributes:
       rss_url:
-        Getting_Count: 取得件数  #g
-        Rss_Url_id_seq: 並び順  #g
-        Site_Name: 名前  #g
-        Site_Url: アドレス  #g
+        limit_count: 取得件数  #g
+        sort_number: 並び順  #g
+        name: 名前  #g
+        url: アドレス  #g
 
   label:
     rss_url:

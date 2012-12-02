@@ -11,10 +11,10 @@ en:
       rss_url: RSS URL
     attributes:
       rss_url:
-        Rss_Url_id_seq: Order
-        Site_Name: Name
-        Site_Url: URL
-        Getting_Count: Getting Count
+        limit_count: Limit
+        sort_number: Order
+        name: Name
+        url: URL
 
   label:
     rss_url:

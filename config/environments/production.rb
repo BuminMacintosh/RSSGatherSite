@@ -1,10 +1,7 @@
 RSSGatherSite::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  # I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
-  # I18n.locale = :ja
-  # I18n.default_locale = :ja
   # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
-  # config.i18n.locale = :ja
+  config.i18n.locale = ENV['LOCALE'] || :en
 
   # bypasses rails bug with i18n in production\
   # I18n.reload!
