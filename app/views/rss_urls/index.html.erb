@@ -18,7 +18,7 @@
         <% rss_url.feed.entries.first(rss_url.limit_count).each do |entry| %>
         <li>
           <div class='small_font'><%= simple_time(entry.last_updated || entry.date_published) %></div>
-          <div ><%= link_to encoding_utf8(entry.title || '-'), entry.url %></div>
+          <div ><%= link_to encoding_utf8(entry.title || '-'), entry.url, :target => '_blank' %></div>
         </li>
         <% end %>
         <div class='actions'>
